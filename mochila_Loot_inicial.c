@@ -6,8 +6,6 @@ Objetivo:
 Comparar o desempenho de Vetor e Lista Encadeada
 nas operações de inserção, remoção, listagem
 e busca de itens.
-
-Autor: Seu Nome
 =========================================================
 */
 
@@ -298,7 +296,53 @@ void inserirItemLista(No **inicio,
 
     /* Conecta o novo nó ao final */
     atual->proximo = novo;
+}/*
+=========================================================
+FUNÇÃO: REMOVER ITEM DO VETOR
+
+Localiza o item pelo nome e remove-o
+deslocando os elementos seguintes.
+
+Complexidade: O(n)
+=========================================================
+*/
+void removerItemVetor(Item mochila[],
+                      int *totalItens,
+                      char nome[])
+{
+    int posicao = -1;
+
+    /* Procura o item */
+    for(int i = 0; i < *totalItens; i++)
+    {
+        if(strcmp(mochila[i].nome, nome) == 0)
+        {
+            posicao = i;
+            break;
+        }
+    }
+
+    /* Item não encontrado */
+    if(posicao == -1)
+    {
+        printf("\nItem nao encontrado.\n");
+        return;
+    }
+
+    /* Desloca os elementos */
+    for(int i = posicao;
+        i < *totalItens - 1;
+        i++)
+    {
+        mochila[i] = mochila[i + 1];
+    }
+
+    (*totalItens)--;
+
+    printf("\nItem removido do vetor com sucesso!\n");
 }
+
+
 
 /*
 =========================================================
@@ -394,15 +438,16 @@ int main()
     /* Menu principal */
     do
     {
-        printf("\n===== MENU =====\n");
-        printf("1 - Inserir Vetor\n");
-        printf("2 - Listar Vetor\n");
-        printf("3 - Buscar Vetor\n");
-        printf("4 - Ordenar Vetor\n");
-        printf("5 - Busca Binaria\n");
-        printf("6 - Inserir Lista\n");
-        printf("7 - Listar Lista\n");
-        printf("8 - Buscar Lista\n");
+        printf("\n===== MOCHILA DE SOBREVIVENCIA - CODIGO DA ILHA =====\n");
+        printf("1 - Inserir Item\n");
+        printf("2 - Remover Item\n");
+        printf("3 - Listar Item\n");
+        printf("4 - Buscar Item\n");
+        printf("5 - Ordenar Item\n");
+        printf("6 - Busca Binaria\n");
+        printf("7 - Inserir Lista\n");
+        printf("8 - Listar Lista\n");
+        printf("9 - Buscar Lista\n");
         printf("0 - Sair\n");
 
         scanf("%d", &opcao);
